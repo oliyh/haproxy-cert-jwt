@@ -22,7 +22,7 @@ local function toUnixEpoch(ts)
 end
 
 function buildJwt(txn)
-   if txn.f:ssl_c_used() == 1 then
+   if txn.f:ssl_c_used() == 1 and txn.f:req_hdr("authorization") == nil then
       local payload = {
          iss = txn.f:ssl_c_i_dn(),                   -- issuer, issuing certificate domain
          sub = txn.f:ssl_c_s_dn("CN"),               -- subject, client certificate common name
