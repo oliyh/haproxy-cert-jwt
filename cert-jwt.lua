@@ -31,7 +31,7 @@ function buildJwt(txn)
          exp = toUnixEpoch(txn.f:ssl_c_notafter())   -- client certificate expiry date
       }
       local token, err = jwt.encode(payload, config.key, config.alg)
-      txn.http:req_add_header("Authorization", "Token " .. token)
+      txn.http:req_add_header("Authorization", "Bearer " .. token)
    end
 end
 
